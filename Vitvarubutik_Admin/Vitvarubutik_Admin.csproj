@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1F3DCB71-FDB1-4D21-B273-C287C528CDC3}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Vitvarubutik_Admin</RootNamespace>
+    <AssemblyName>Vitvarubutik_Admin</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mysql.data, Version=6.7.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\MySQL\v451\mysql.data.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main\Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Essentials\Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tables\Kampanj\AddKampanjForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tables\Kampanj\AddKampanjForm.Designer.cs">
+      <DependentUpon>AddKampanjForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tables\Kampanj\ShowKampanjForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tables\Kampanj\ShowKampanjForm.Designer.cs">
+      <DependentUpon>ShowKampanjForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tables\Kund\AddKundForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tables\Kund\AddKundForm.Designer.cs">
+      <DependentUpon>AddKundForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tables\Kund\ShowKundForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tables\Kund\ShowKundForm.Designer.cs">
+      <DependentUpon>ShowKundForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tables\Leverantör\AddLeverantörForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tables\Leverantör\AddLeverantörForm.Designer.cs">
+      <DependentUpon>AddLeverantörForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tables\Leverantör\ShowLeverantörForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tables\Leverantör\ShowLeverantörForm.Designer.cs">
+      <DependentUpon>ShowLeverantörForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tables\Produkt\AddProductForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tables\Produkt\AddProductForm.Designer.cs">
+      <DependentUpon>AddProductForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tables\Produkt\ShowProduktsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tables\Produkt\ShowProduktsForm.Designer.cs">
+      <DependentUpon>ShowProduktsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\MSGForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utilities\MSGForm.Designer.cs">
+      <DependentUpon>MSGForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\NewConnectionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utilities\NewConnectionForm.Designer.cs">
+      <DependentUpon>NewConnectionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\FixedForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utilities\FixedForm.Designer.cs">
+      <DependentUpon>FixedForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Main\Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Tables\Kampanj\AddKampanjForm.resx">
+      <DependentUpon>AddKampanjForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tables\Kampanj\ShowKampanjForm.resx">
+      <DependentUpon>ShowKampanjForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tables\Kund\AddKundForm.resx">
+      <DependentUpon>AddKundForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tables\Kund\ShowKundForm.resx">
+      <DependentUpon>ShowKundForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tables\Leverantör\AddLeverantörForm.resx">
+      <DependentUpon>AddLeverantörForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tables\Leverantör\ShowLeverantörForm.resx">
+      <DependentUpon>ShowLeverantörForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tables\Produkt\AddProductForm.resx">
+      <DependentUpon>AddProductForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tables\Produkt\ShowProduktsForm.resx">
+      <DependentUpon>ShowProduktsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\MSGForm.resx">
+      <DependentUpon>MSGForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\NewConnectionForm.resx">
+      <DependentUpon>NewConnectionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Essentials\App.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

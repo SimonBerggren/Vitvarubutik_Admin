@@ -1,0 +1,58 @@
+c:\users\simon\documents\visual studio 2013\Projects\Vitvarubutik_Admin\Vitvarubutik_Admin\bin\Debug\Vitvarubutik_Admin.exe.config
+c:\users\simon\documents\visual studio 2013\Projects\Vitvarubutik_Admin\Vitvarubutik_Admin\bin\Debug\Vitvarubutik_Admin.exe
+c:\users\simon\documents\visual studio 2013\Projects\Vitvarubutik_Admin\Vitvarubutik_Admin\bin\Debug\Vitvarubutik_Admin.pdb
+c:\users\simon\documents\visual studio 2013\Projects\Vitvarubutik_Admin\Vitvarubutik_Admin\obj\Debug\Vitvarubutik_Admin.csprojResolveAssemblyReference.cache
+c:\users\simon\documents\visual studio 2013\Projects\Vitvarubutik_Admin\Vitvarubutik_Admin\obj\Debug\Vitvarubutik_Admin.Main.resources
+c:\users\simon\documents\visual studio 2013\Projects\Vitvarubutik_Admin\Vitvarubutik_Admin\obj\Debug\Vitvarubutik_Admin.Properties.Resources.resources
+c:\users\simon\documents\visual studio 2013\Projects\Vitvarubutik_Admin\Vitvarubutik_Admin\obj\Debug\Vitvarubutik_Admin.csproj.GenerateResource.Cache
+c:\users\simon\documents\visual studio 2013\Projects\Vitvarubutik_Admin\Vitvarubutik_Admin\obj\Debug\Vitvarubutik_Admin.exe
+c:\users\simon\documents\visual studio 2013\Projects\Vitvarubutik_Admin\Vitvarubutik_Admin\obj\Debug\Vitvarubutik_Admin.pdb
+C:\Users\Simon\Documents\Visual Studio 2013\Projects\Vitvarubutik_Admin\Vitvarubutik_Admin\obj\Debug\Vitvarubutik_Admin.Utilities.NewConnectionForm.resources
+C:\Users\Simon\Documents\Visual Studio 2013\Projects\Vitvarubutik_Admin\Vitvarubutik_Admin\obj\Debug\Vitvarubutik_Admin.Tables.Produkt.ShowProduktsForm.resources
+C:\Users\Simon\Documents\Visual Studio 2013\Projects\Vitvarubutik_Admin\Vitvarubutik_Admin\obj\Debug\Vitvarubutik_Admin.Tables.Produkt.AddProductForm.resources
+C:\Users\Simon\Documents\Visual Studio 2013\Projects\Vitvarubutik_Admin\Vitvarubutik_Admin\obj\Debug\Vitvarubutik_Admin.Tables.Kund.AddKundForm.resources
+C:\Users\Simon\Documents\Visual Studio 2013\Projects\Vitvarubutik_Admin\Vitvarubutik_Admin\obj\Debug\Vitvarubutik_Admin.Tables.Kund.ShowKundForm.resources
+C:\Users\Simon\Documents\Visual Studio 2013\Projects\Vitvarubutik_Admin\Vitvarubutik_Admin\obj\Debug\Vitvarubutik_Admin.Tables.Leverantör.AddLeverantörForm.resources
+C:\Users\Simon\Documents\Visual Studio 2013\Projects\Vitvarubutik_Admin\Vitvarubutik_Admin\obj\Debug\Vitvarubutik_Admin.Tables.Leverantör.ShowLeverantörForm.resources
+C:\Users\Simon\Documents\Visual Studio 2013\Projects\Vitvarubutik_Admin\Vitvarubutik_Admin\obj\Debug\Vitvarubutik_Admin.Utilities.MSGForm.resources
+C:\Users\Simon\Documents\Visual Studio 2013\Projects\Vitvarubutik_Admin\Vitvarubutik_Admin\obj\Debug\Vitvarubutik_Admin.Tables.Kampanj.ShowKampanjForm.resources
+C:\Users\Simon\Documents\Visual Studio 2013\Projects\Vitvarubutik_Admin\Vitvarubutik_Admin\obj\Debug\Vitvarubutik_Admin.Tables.Kampanj.AddKampanjForm.resources
+C:\Users\Robin\Desktop\Vitvarubutik_Admin\Vitvarubutik_Admin\bin\Debug\Vitvarubutik_Admin.exe.config
+C:\Users\Robin\Desktop\Vitvarubutik_Admin\Vitvarubutik_Admin\obj\Debug\Vitvarubutik_Admin.exe
+C:\Users\Robin\Desktop\Vitvarubutik_Admin\Vitvarubutik_Admin\obj\Debug\Vitvarubutik_Admin.pdb
+C:\Users\Robin\Desktop\Vitvarubutik_Admin\Vitvarubutik_Admin\obj\Debug\Vitvarubutik_Admin.csprojResolveAssemblyReference.cache
+C:\Users\Robin\Desktop\Vitvarubutik_Admin\Vitvarubutik_Admin\obj\Debug\Vitvarubutik_Admin.Main.resources
+C:\Users\Robin\Desktop\Vitvarubutik_Admin\Vitvarubutik_Admin\obj\Debug\Vitvarubutik_Admin.Properties.Resources.resources
+C:\Users\Robin\Desktop\Vitvarubutik_Admin\Vitvarubutik_Admin\obj\Debug\Vitvarubutik_Admin.Tables.Kampanj.AddKampanjForm.resources
+C:\Users\Robin\Desktop\Vitvarubutik_Admin\Vitvarubutik_Admin\obj\Debug\Vitvarubutik_Admin.Tables.Kampanj.ShowKampanjForm.resources
+C:\Users\Robin\Desktop\Vitvarubutik_Admin\Vitvarubutik_Admin\obj\Debug\Vitvarubutik_Admin.Tables.Kund.AddKundForm.resources
+C:\Users\Robin\Desktop\Vitvarubutik_Admin\Vitvarubutik_Admin\obj\Debug\Vitvarubutik_Admin.Tables.Kund.ShowKundForm.resources
+C:\Users\Robin\Desktop\Vitvarubutik_Admin\Vitvarubutik_Admin\obj\Debug\Vitvarubutik_Admin.Tables.Leverantör.AddLeverantörForm.resources
+C:\Users\Robin\Desktop\Vitvarubutik_Admin\Vitvarubutik_Admin\obj\Debug\Vitvarubutik_Admin.Tables.Leverantör.ShowLeverantörForm.resources
+C:\Users\Robin\Desktop\Vitvarubutik_Admin\Vitvarubutik_Admin\obj\Debug\Vitvarubutik_Admin.Tables.Produkt.AddProductForm.resources
+C:\Users\Robin\Desktop\Vitvarubutik_Admin\Vitvarubutik_Admin\obj\Debug\Vitvarubutik_Admin.Tables.Produkt.ShowProduktsForm.resources
+C:\Users\Robin\Desktop\Vitvarubutik_Admin\Vitvarubutik_Admin\obj\Debug\Vitvarubutik_Admin.Utilities.MSGForm.resources
+C:\Users\Robin\Desktop\Vitvarubutik_Admin\Vitvarubutik_Admin\obj\Debug\Vitvarubutik_Admin.Utilities.NewConnectionForm.resources
+C:\Users\Robin\Desktop\Vitvarubutik_Admin\Vitvarubutik_Admin\obj\Debug\Vitvarubutik_Admin.csproj.GenerateResource.Cache
+C:\Users\Robin\Desktop\Vitvarubutik_Admin\Vitvarubutik_Admin\bin\Debug\Vitvarubutik_Admin.exe
+C:\Users\Robin\Desktop\Vitvarubutik_Admin\Vitvarubutik_Admin\bin\Debug\Vitvarubutik_Admin.pdb
+C:\Users\Robin\Desktop\Vitvarubutik_Admin\Vitvarubutik_Admin\bin\Debug\mysql.data.dll
+C:\Users\Simon\Desktop\Vitvarubutik_Admin\Vitvarubutik_Admin\bin\Debug\Vitvarubutik_Admin.exe.config
+C:\Users\Simon\Desktop\Vitvarubutik_Admin\Vitvarubutik_Admin\obj\Debug\Vitvarubutik_Admin.exe
+C:\Users\Simon\Desktop\Vitvarubutik_Admin\Vitvarubutik_Admin\obj\Debug\Vitvarubutik_Admin.pdb
+C:\Users\Simon\Desktop\Vitvarubutik_Admin\Vitvarubutik_Admin\obj\Debug\Vitvarubutik_Admin.csprojResolveAssemblyReference.cache
+C:\Users\Simon\Desktop\Vitvarubutik_Admin\Vitvarubutik_Admin\obj\Debug\Vitvarubutik_Admin.Main.resources
+C:\Users\Simon\Desktop\Vitvarubutik_Admin\Vitvarubutik_Admin\obj\Debug\Vitvarubutik_Admin.Properties.Resources.resources
+C:\Users\Simon\Desktop\Vitvarubutik_Admin\Vitvarubutik_Admin\obj\Debug\Vitvarubutik_Admin.Tables.Kampanj.AddKampanjForm.resources
+C:\Users\Simon\Desktop\Vitvarubutik_Admin\Vitvarubutik_Admin\obj\Debug\Vitvarubutik_Admin.Tables.Kampanj.ShowKampanjForm.resources
+C:\Users\Simon\Desktop\Vitvarubutik_Admin\Vitvarubutik_Admin\obj\Debug\Vitvarubutik_Admin.Tables.Kund.AddKundForm.resources
+C:\Users\Simon\Desktop\Vitvarubutik_Admin\Vitvarubutik_Admin\obj\Debug\Vitvarubutik_Admin.Tables.Kund.ShowKundForm.resources
+C:\Users\Simon\Desktop\Vitvarubutik_Admin\Vitvarubutik_Admin\obj\Debug\Vitvarubutik_Admin.Tables.Leverantör.AddLeverantörForm.resources
+C:\Users\Simon\Desktop\Vitvarubutik_Admin\Vitvarubutik_Admin\obj\Debug\Vitvarubutik_Admin.Tables.Leverantör.ShowLeverantörForm.resources
+C:\Users\Simon\Desktop\Vitvarubutik_Admin\Vitvarubutik_Admin\obj\Debug\Vitvarubutik_Admin.Tables.Produkt.AddProductForm.resources
+C:\Users\Simon\Desktop\Vitvarubutik_Admin\Vitvarubutik_Admin\obj\Debug\Vitvarubutik_Admin.Tables.Produkt.ShowProduktsForm.resources
+C:\Users\Simon\Desktop\Vitvarubutik_Admin\Vitvarubutik_Admin\obj\Debug\Vitvarubutik_Admin.Utilities.MSGForm.resources
+C:\Users\Simon\Desktop\Vitvarubutik_Admin\Vitvarubutik_Admin\obj\Debug\Vitvarubutik_Admin.Utilities.NewConnectionForm.resources
+C:\Users\Simon\Desktop\Vitvarubutik_Admin\Vitvarubutik_Admin\obj\Debug\Vitvarubutik_Admin.csproj.GenerateResource.Cache
+C:\Users\Simon\Desktop\Vitvarubutik_Admin\Vitvarubutik_Admin\bin\Debug\Vitvarubutik_Admin.exe
+C:\Users\Simon\Desktop\Vitvarubutik_Admin\Vitvarubutik_Admin\bin\Debug\Vitvarubutik_Admin.pdb
