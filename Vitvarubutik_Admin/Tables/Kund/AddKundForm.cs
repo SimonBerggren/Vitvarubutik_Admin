@@ -60,6 +60,8 @@ namespace Vitvarubutik_Admin.Tables.Kund
                     + "VALUES ('" + Box_Name.Text + "', '" + Box_Phone.Text + "', '" + Box_Mail.Text + "');" );
             }
 
+            if (reader == null) return;
+
             reader.Close();
             Main.CloseConnection();
 

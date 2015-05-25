@@ -52,6 +52,7 @@ namespace Vitvarubutik_Admin.Tables.Leverantör
             string id = indexes[listLeverantör.SelectedIndex];
 
             MySqlDataReader reader = Main.RunQuery("DELETE FROM Leverantör WHERE Namn = '" + id + "'");
+            if (reader == null) return;
 
             reader.Close();
             Main.CloseConnection();
@@ -66,6 +67,8 @@ namespace Vitvarubutik_Admin.Tables.Leverantör
             indexes.Clear();
 
             MySqlDataReader reader = Main.RunQuery("SELECT * FROM Leverantör");
+
+            if (reader == null) return;
 
             while (reader.Read())
             {

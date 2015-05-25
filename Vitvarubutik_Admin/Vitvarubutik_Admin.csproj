@@ -62,6 +62,12 @@
     <Compile Include="Tables\Kampanj\AddKampanjForm.Designer.cs">
       <DependentUpon>AddKampanjForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tables\Kampanj\ProductToKampanjForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tables\Kampanj\ProductToKampanjForm.Designer.cs">
+      <DependentUpon>ProductToKampanjForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tables\Kampanj\ShowKampanjForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -136,6 +142,9 @@
     </Compile>
     <EmbeddedResource Include="Tables\Kampanj\AddKampanjForm.resx">
       <DependentUpon>AddKampanjForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tables\Kampanj\ProductToKampanjForm.resx">
+      <DependentUpon>ProductToKampanjForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tables\Kampanj\ShowKampanjForm.resx">
       <DependentUpon>ShowKampanjForm.cs</DependentUpon>

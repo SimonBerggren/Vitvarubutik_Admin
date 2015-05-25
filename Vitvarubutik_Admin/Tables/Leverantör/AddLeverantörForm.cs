@@ -61,6 +61,8 @@ namespace Vitvarubutik_Admin.Tables.Leverantör
                     + Box_Name.Text + "', '" + Box_Phone.Text + "', '" + Box_Mail.Text + "', '" + Box_Adress.Text + "')");
             }
 
+            if (reader == null) return;
+
             reader.Close();
             Main.CloseConnection();
 

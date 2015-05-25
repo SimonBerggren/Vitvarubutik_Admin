@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -24,7 +25,8 @@ namespace Vitvarubutik_Admin.Tables.Produkt
             ShowDialog(parent);
         }
 
-        public AddProductForm(ShowProduktsForm parent, int id, string Tillverkare, string Modell, string Typ, string Energiklass, int Pris, string Beskrivning, string Bild_Länk, int Antal)
+        public AddProductForm(ShowProduktsForm parent, int id, string Tillverkare, string Modell, string Typ, string Energiklass,
+                                                       string Beskrivning, int Pris, string Bild_Länk, int Antal, string Leverantör, int Inköpspris)
         {
             this.parent = parent;
             this.id = id;
@@ -38,6 +40,8 @@ namespace Vitvarubutik_Admin.Tables.Produkt
             PrisTextBox.Text = Pris.ToString();
             ImageTextBox.Text = Bild_Länk;
             AntalTextBox.Text = Antal.ToString();
+            LeverantörTextBox.Text = Leverantör;
+            InköpsTextBox.Text = Inköpspris.ToString();
 
             AddButton.Text = "Spara";
             altering = true;
@@ -58,25 +62,31 @@ namespace Vitvarubutik_Admin.Tables.Produkt
             if (!int.TryParse(PrisTextBox.Text, out pris) && !int.TryParse(AntalTextBox.Text, out antal))
                 return;
 
+            MySqlDataReader reader;
+
             if (!altering)
             {
-                string query = "INSERT INTO Produkt (Typ, Tillverkare, Modell, Energiklass, Beskrivning, Pris, Bild_Länk, Lagerantal) " +
-                    "VALUES ('" + this.TypeTextBox.Text + "', '" + this.TillverkareTextBox.Text + "', '" + this.ModelTextBox.Text + "', " +
-                    "'" + EnergiTextBox.Text + "', '" + BeskrivningTextBox.Text + "', " + pris + ", '" + this.ImageTextBox.Text + "', " + AntalTextBox.Text + ");";
-
-                Main.RunQuery(query);
+                reader = Main.RunQuery("INSERT INTO Produkt (Tillverkare, Modell, Typ, Energiklass, Beskrivning, Pris, Bild_Länk, Lagerantal, Leverantör, Inköpspris) " +
+                    "VALUES ('" + TillverkareTextBox.Text + "', '" + ModelTextBox.Text + "', '" + TypeTextBox.Text +
+                    "', '" + EnergiTextBox.Text + "', '" + BeskrivningTextBox.Text + "', " + pris + ", '" + ImageTextBox.Text +
+                    "', " + AntalTextBox.Text + ", '" + LeverantörTextBox.Text + "', " + InköpsTextBox.Text + ");");
             }
             else
             {
-                string query = "UPDATE Produkt " +
-                    "SET Typ='" + TypeTextBox.Text + "', Tillverkare='" + TillverkareTextBox.Text + "', Modell='" + ModelTextBox.Text + "', Energiklass='" +
+                reader = Main.RunQuery("UPDATE Produkt " +
+                    "SET Tillverkare='" + TillverkareTextBox.Text + "', Modell='" + ModelTextBox.Text + "', Typ='" + TypeTextBox.Text + "', Energiklass='" +
                     EnergiTextBox.Text + "', Beskrivning='" + BeskrivningTextBox.Text + "', Pris=" + PrisTextBox.Text + ", Bild_Länk='" + ImageTextBox.Text + "', " +
-                    "Lagerantal=" + AntalTextBox.Text + " " +
-                    "WHERE Artikelnummer=" + id + ";";
-                Main.RunQuery(query);
+                    "Lagerantal=" + AntalTextBox.Text + ", Leverantör='" + LeverantörTextBox.Text + "', Inköpspris=" + InköpsTextBox.Text + " " +
+                    "WHERE Artikelnummer=" + id + ";");
             }
 
+            if (reader == null) return;
+
             parent.UpdateItemList();
+
+            reader.Close();
+            Main.CloseConnection();
+
             Close();
         }
 

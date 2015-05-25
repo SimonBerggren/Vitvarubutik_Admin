@@ -36,6 +36,7 @@ namespace Vitvarubutik_Admin.Tables.Produkt
             int id = indexes[listProducts.SelectedIndex];
 
             MySqlDataReader reader = Main.RunQuery("DELETE FROM Produkt WHERE Artikelnummer = " + id);
+            if (reader == null) return;
 
             reader.Close();
             Main.CloseConnection();
@@ -52,9 +53,11 @@ namespace Vitvarubutik_Admin.Tables.Produkt
             int id = indexes[listProducts.SelectedIndex];
 
             MySqlDataReader reader = Main.RunQuery("SELECT * FROM Produkt WHERE Artikelnummer = " + id);
+            if (reader == null) return;
 
             reader.Read();
-            new AddProductForm(this, reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetInt32(5), reader.GetString(6), reader.GetString(7), reader.GetInt32(8));
+            new AddProductForm(this, reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4),
+                                     reader.GetString(5), reader.GetInt32(6), reader.GetString(7), reader.GetInt32(8), reader.GetString(9), reader.GetInt32(10));
             
             reader.Close();
             Main.CloseConnection();
@@ -65,14 +68,15 @@ namespace Vitvarubutik_Admin.Tables.Produkt
             listProducts.Items.Clear();
             indexes.Clear();
 
-            MySqlDataReader reader = Main.RunQuery("SELECT Tillverkare, Modell, Typ, Energiklass, Pris, Beskrivning, lagerantal, Artikelnummer FROM Produkt");
+            MySqlDataReader reader = Main.RunQuery("SELECT Artikelnummer, Tillverkare, Modell, Typ, Energiklass, Beskrivning, Pris, Lagerantal, Leverantör, Inköpspris FROM Produkt");
+            if (reader == null) return;
 
             while (reader.Read())
             {
-                string line = "Tillverkare: " + reader.GetString(0) + " Modell: " + reader.GetString(1) + " Typ: " + reader.GetString(2) + " Energiklass: " + reader.GetString(3) + " Pris: " + reader.GetString(4)
-                    + " Beskrivning: " + reader.GetString(5) + " Antal i lager: " + reader.GetString(6);
+                indexes.Add(reader.GetInt32(0));
+                string line = "Tillverkare: " + reader.GetString(1) + " Modell: " + reader.GetString(2) + " Typ: " + reader.GetString(3) + " Energiklass: " + reader.GetString(4) + " Pris: " + reader.GetString(5)
+                    + " Beskrivning: " + reader.GetString(6) + " Antal i lager: " + reader.GetString(7) + " Leverantör: " + reader.GetString(8) + " Inköpspris: " + reader.GetInt32(9);
                 listProducts.Items.Add(line);
-                indexes.Add(reader.GetInt32(7));
             }
 
             reader.Close();

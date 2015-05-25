@@ -35,9 +35,11 @@ namespace Vitvarubutik_Admin.Tables.Kampanj
 
             int id = indexes[listKampanj.SelectedIndex];
 
-            MySqlDataReader reader = Main.RunQuery("SELECT * FROM Kampanj WHERE ID = " + id);
+            MySqlDataReader reader = Main.RunQuery("SELECT * FROM Kampanj WHERE KampanjID = " + id);
+            if (reader == null) return;
 
-            new AddKampanjForm(this, reader.GetInt32(0), reader.GetString(1), reader.GetDateTime(2), reader.GetDateTime(3));
+            reader.Read();
+            new AddKampanjForm(this, reader.GetInt32(0), reader.GetString(1), reader.GetString(2) ,reader.GetDateTime(3), reader.GetDateTime(4));
 
             reader.Close();
             Main.CloseConnection();
@@ -50,7 +52,9 @@ namespace Vitvarubutik_Admin.Tables.Kampanj
 
             int id = indexes[listKampanj.SelectedIndex];
 
-            MySqlDataReader reader = Main.RunQuery("DELETE * FROM Kampanj WHERE ID = " + id);
+            MySqlDataReader reader = Main.RunQuery("DELETE FROM Kampanj WHERE KampanjID = " + id);
+            if (reader == null) return;
+
             indexes.Remove(id);
 
             reader.Close();
@@ -64,7 +68,8 @@ namespace Vitvarubutik_Admin.Tables.Kampanj
             listKampanj.Items.Clear();
             indexes.Clear();
 
-            MySqlDataReader reader = Main.RunQuery("SELECT ID, Namn, DATE_FORMAT(StartDatum, '%Y-%m-%d'), DATE_FORMAT(SlutDatum, '%Y-%m-%d') FROM Kampanj");
+            MySqlDataReader reader = Main.RunQuery("SELECT KampanjID, Namn, DATE_FORMAT(StartDatum, '%Y-%m-%d'), DATE_FORMAT(SlutDatum, '%Y-%m-%d') FROM Kampanj");
+            if (reader == null) return;
 
             while (reader.Read())
             {

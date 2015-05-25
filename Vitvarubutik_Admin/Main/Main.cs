@@ -64,6 +64,7 @@ namespace Vitvarubutik_Admin
             catch (MySqlException e)
             {
                 Console.WriteLine(e.Message);
+                conn.Close();
                 new MSGForm(e.Message, null);
                 return null;
             }

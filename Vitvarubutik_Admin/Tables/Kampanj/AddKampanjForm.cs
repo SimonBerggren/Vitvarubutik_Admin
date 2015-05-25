@@ -14,6 +14,7 @@ namespace Vitvarubutik_Admin.Tables.Kampanj
 {
     public partial class AddKampanjForm : FixedForm
     {
+
         ShowKampanjForm parent;
         bool altering;
         int id;
@@ -25,7 +26,7 @@ namespace Vitvarubutik_Admin.Tables.Kampanj
             ShowDialog(parent);
         }
 
-        public AddKampanjForm(ShowKampanjForm parent, int ID, string Namn, DateTime StartDatum, DateTime SlutDatum)
+        public AddKampanjForm(ShowKampanjForm parent, int ID, string Namn, string Beskrivning, DateTime StartDatum, DateTime SlutDatum)
         {
             this.parent = parent;
             this.id = ID;
@@ -34,9 +35,11 @@ namespace Vitvarubutik_Admin.Tables.Kampanj
             InitializeComponent();
 
             Box_Name.Text = Namn;
+            BeskrivningTextBox.Text = Beskrivning;
             Date_FROM.Value = StartDatum;
             Date_TO.Value = SlutDatum;
 
+            Button.Text = "Spara";
             ShowDialog(parent);
         }
 
@@ -47,13 +50,13 @@ namespace Vitvarubutik_Admin.Tables.Kampanj
             if (altering)
             {
                 reader = Main.RunQuery("UPDATE Kampanj "
-                   + "SET Namn = '" + Box_Name.Text + "', StartDatum = " + Date_FROM.Value.ToString("yyyyMMdd") + ", SlutDatum = " + Date_TO.Value.ToString("yyyyMMdd")
-                   + " WHERE ID = " + id);
+                   + "SET Namn = '" + Box_Name.Text + "', Beskrivning = '" + BeskrivningTextBox.Text + "', StartDatum = " + Date_FROM.Value.ToString("yyyyMMdd") + ", SlutDatum = " + Date_TO.Value.ToString("yyyyMMdd")
+                   + " WHERE KampanjID = " + id);
             }
             else
             {
-                reader = Main.RunQuery("INSERT INTO Kampanj (Namn, StartDatum, SlutDatum)"
-                   + " VALUES ('" + Box_Name.Text + "', " + Date_FROM.Value.ToString("yyyyMMdd") + ", " + Date_TO.Value.ToString("yyyyMMdd") + ");");
+                reader = Main.RunQuery("INSERT INTO Kampanj (Namn, Beskrivning, StartDatum, SlutDatum)"
+                   + " VALUES ('" + Box_Name.Text + "', '" + BeskrivningTextBox.Text + "', " + Date_FROM.Value.ToString("yyyyMMdd") + ", " + Date_TO.Value.ToString("yyyyMMdd") + ");");
             }
 
             reader.Close();
@@ -61,6 +64,11 @@ namespace Vitvarubutik_Admin.Tables.Kampanj
 
             parent.UpdateItems();
             Close();
+        }
+
+        private void NyProduktButton_Click(object sender, EventArgs e)
+        {
+            new ProductToKampanjForm(id);
         }
     }
 }

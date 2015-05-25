@@ -36,7 +36,9 @@ namespace Vitvarubutik_Admin.Tables.Kund
             int id = indexes[listCustomers.SelectedIndex];
 
             MySqlDataReader reader = Main.RunQuery("SELECT * FROM Kund WHERE Kundnummer = " + id);
+            if (reader == null) return;
 
+            reader.Read();
             new AddKundForm(this, reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3));
 
             reader.Close();
@@ -67,12 +69,12 @@ namespace Vitvarubutik_Admin.Tables.Kund
             listCustomers.Items.Clear();
             indexes.Clear();
 
-            MySqlDataReader reader = Main.RunQuery("SELECT Kundnummer, Namn, Telefonnummer, Email FROM Kund");
+            MySqlDataReader reader = Main.RunQuery("SELECT * FROM Kund");
 
             while (reader.Read())
             {
                 indexes.Add(reader.GetInt32(0));
-                string line = "Namn: " + reader.GetString(1) + " Telefonnummer: " + reader.GetString(2) + " Email: " + reader.GetString(3);
+                string line = "Namn: " + reader.GetString(1) + " Telefonnummer: " + reader.GetString(2) + " Email: " + reader.GetString(3) + " Köpt för: " + reader.GetInt32(4) + " kr";
                 listCustomers.Items.Add(line);
             }
 

@@ -1,0 +1,56 @@
+CREATE TABLE Kund (
+Kundnummer int PRIMARY KEY AUTO_INCREMENT,
+Namn char(50),
+Telefonnummer char(15),
+Email char(50),
+Köpsumma int NOT NULL DEFAULT 0
+);
+
+CREATE TABLE Leverantör (
+Namn char(50) PRIMARY KEY NOT NULL,
+Telefonnummer char(15),
+Email char(50),
+Faktureringsadress char(100)
+);
+
+CREATE TABLE Produkt (
+Artikelnummer int PRIMARY KEY AUTO_INCREMENT,
+Tillverkare char(50),
+Modell char(50),
+Typ char(50),
+Energiklass char(5),
+Beskrivning text,
+Pris int,
+Bild_Länk char(100),
+Lagerantal int,
+Leverantör char(50),
+Inköpspris int,
+
+FOREIGN KEY (Leverantör) REFERENCES Leverantör(Namn)
+);
+
+CREATE TABLE Kampanj (
+KampanjID int PRIMARY KEY AUTO_INCREMENT,
+Namn char(50),
+Beskrivning text,
+Startdatum date,
+Slutdatum date
+);
+
+CREATE TABLE HarKöpt (
+Kundnummer int,
+Artikelnummer int,
+Köpsdatum date,
+
+FOREIGN KEY (Kundnummer) REFERENCES Kund(Kundnummer),
+FOREIGN KEY (Artikelnummer) REFERENCES Produkt(Artikelnummer)
+);
+
+CREATE TABLE IngårI (
+KampanjID int,
+Artikelnummer int,
+Rabatt int NOT NULL,
+
+FOREIGN KEY (KampanjID) REFERENCES Kampanj(KampanjID),
+FOREIGN KEY (Artikelnummer) REFERENCES Produkt(Artikelnummer)
+);

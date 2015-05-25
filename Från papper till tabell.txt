@@ -1,0 +1,20 @@
+Kund (Kundnummer, Namn, Telefonnummer, Email, Tidigare Köpsumma)
+	PK = Kundnummer
+
+HarKöpt (Kundnummer, Artikelnummer, Köpsdatum)
+	PK = (Kundnummer, Artikelnummer)
+	FK = Artikelnummer -> Produkt(Artikelnummer), Kundnummer -> Kund(Kundnummer)
+
+Produkt (Artikelnummer, Modell, Tillverkare, Typ, Beskrivning, Bild Länk, Energiklass, Antal, Pris, Leverantör, Inköpspris)
+	PK = Artikelnummer
+	FK = Leverantör -> Leverantör(Namn)
+
+Leverantör (Namn, Telefonnummer, Email, Faktureringsadress)
+	PK = Namn
+
+Kampanj (KampanjID, Namn, Startdatum, Slutdatum)
+	PK = KampanjID
+
+IngårI (KampanjID, Artikelnummer, Rabatt)
+	PK = (KampanjID, Artikelnummer)
+	FK = KampanjID -> Kampanj(KampanjID), Artikelnummer -> Produkt(Artikelnummer)
