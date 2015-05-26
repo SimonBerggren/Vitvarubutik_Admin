@@ -86,7 +86,7 @@
             this.CategoryList.Sorted = true;
             this.CategoryList.TabIndex = 8;
             this.CategoryList.ThreeDCheckBoxes = true;
-            this.CategoryList.MouseClick += new System.Windows.Forms.MouseEventHandler(this.CategoryList_CheckedItem);
+            this.CategoryList.MouseClick += new System.Windows.Forms.MouseEventHandler(this.CategoryList_Click);
             // 
             // RemoveCategoryButton
             // 

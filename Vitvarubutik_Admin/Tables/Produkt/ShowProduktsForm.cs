@@ -15,14 +15,18 @@ namespace Vitvarubutik_Admin.Tables.Produkt
     public partial class ShowProduktsForm : FixedForm
     {
         private List<int> indexes = new List<int>();
-        string categories = "";
-        bool dislayingFewProducts = false;
+
+        private string categories = "";
+
+        private bool initialLoad = true;
 
         public ShowProduktsForm()
         {
             InitializeComponent();
-            CheckQuantity();
+
             UpdateCategoryList();
+            initialLoad = false;
+
             Show();
         }
 
@@ -47,9 +51,12 @@ namespace Vitvarubutik_Admin.Tables.Produkt
 
             reader.Close();
             Main.CloseConnection();
-
-            UpdateItemList();
         }
+
+        /// <summary>
+        /// If user wants to edit an existing product, make sure there is a selected product first.
+        /// Ask database for information about  selected product, sending it to a new form.
+        /// </summary>
 
         private void RedigeraButton_Click(object sender, EventArgs e)
         {
@@ -69,23 +76,23 @@ namespace Vitvarubutik_Admin.Tables.Produkt
             Main.CloseConnection();
         }
 
+        /// <summary>
+        /// Controlls what happens when user changes which product to view.
+        /// Either every product in stock or only almost sold out ones.
+        /// </summary>
+
         private void ViewBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ViewBox.SelectedItem.ToString() == "Alla produkter")
-                dislayingFewProducts = false;
-            else if (ViewBox.SelectedItem.ToString() == "Få produkter")
-                dislayingFewProducts = true;
-
-            UpdateItemList();
-        }
-
-        public void UpdateItemList()
-        {
-            if (dislayingFewProducts)
-                UpdateQuantity();
-            else
                 UpdateProducts();
+            else if (ViewBox.SelectedItem.ToString() == "Få produkter")
+                UpdateFewProducts();
         }
+
+        /// <summary>
+        /// Asks database for information about every product
+        /// Adds it to product list and displaying
+        /// </summary>
 
         public void UpdateProducts()
         {
@@ -107,23 +114,26 @@ namespace Vitvarubutik_Admin.Tables.Produkt
             Main.CloseConnection();
         }
 
-        private void CheckQuantity()
+        /// <summary>
+        /// Used for checking if there only exists 3 or fewer products of any kind.
+        /// If this is the first time called, send a prompt where user chooses whether to display them or not.
+        /// If user accepts, fill list with concerned products.
+        /// </summary>
+
+        private void UpdateFewProducts()
         {
             MySqlDataReader reader = Main.RunQuery("SELECT COUNT(*), Artikelnummer, Tillverkare, Modell, Typ, Lagerantal FROM Produkt WHERE Lagerantal <= 3 GROUP BY Artikelnummer ORDER BY Lagerantal");
             if (reader == null) return;
 
-            var warningMsg = MessageBox.Show("Vissa produkter håller på att gå ut! Klicka på Ja för att visa dem.", "", MessageBoxButtons.YesNo);
+            if (initialLoad)
+            {
+                var warningMsg = MessageBox.Show("Vissa produkter håller på att gå ut! Klicka på Ja för att visa dem.", "", MessageBoxButtons.YesNo);
 
-            if (warningMsg == DialogResult.Yes)
-                ViewBox.SelectedIndex = ViewBox.FindString("Få produkter");
-            else
-                ViewBox.SelectedIndex = ViewBox.FindString("Alla produkter");
-        }
-
-        private void UpdateQuantity()
-        {
-            MySqlDataReader reader = Main.RunQuery("SELECT COUNT(*), Artikelnummer, Tillverkare, Modell, Typ, Lagerantal FROM Produkt WHERE Lagerantal <= 3 GROUP BY Artikelnummer ORDER BY Lagerantal");
-            if (reader == null) return;
+                if (warningMsg == DialogResult.Yes)
+                    ViewBox.SelectedIndex = ViewBox.FindString("Få produkter");
+                else
+                    ViewBox.SelectedIndex = ViewBox.FindString("Alla produkter");
+            }
 
             listProducts.Items.Clear();
             indexes.Clear();
@@ -141,6 +151,10 @@ namespace Vitvarubutik_Admin.Tables.Produkt
             Main.CloseConnection();
         }
 
+        /// <summary>
+        /// Controlls CategoryList, only add categories that already exists in the database
+        /// </summary>
+
         public void UpdateCategoryList()
         {
             MySqlDataReader reader = Main.RunQuery("SELECT Typ FROM Produkt GROUP BY Typ");
@@ -155,6 +169,16 @@ namespace Vitvarubutik_Admin.Tables.Produkt
             reader.Close();
             Main.CloseConnection();
         }
+
+        /// <summary>
+        /// Controlls what happens when clicking button for removing a category.
+        /// Warns user with a Yes or Cancel form since every product within the category will also be deleted.
+        /// If user cancels or no categorys are selected, do nothing.
+        /// Products in kampanj are dependent on entries in table IngårI, 
+        /// which is why we are first trying to delete every entry in table IngårI which is within our selected categories. 
+        /// Then loop through items in CheckBoxList and delete them from there as well.
+        /// Update listProduct in case any products where removed.
+        /// </summary>
 
         private void RemoveCategory_Click(object sender, EventArgs e)
         {
@@ -175,14 +199,29 @@ namespace Vitvarubutik_Admin.Tables.Produkt
             reader.Close();
             Main.CloseConnection();
 
-            UpdateItemList();
+            UpdateProducts();
 
         }
 
-        private void CategoryList_CheckedItem(object sender, EventArgs e)
+        /// <summary>
+        /// Checks for MouseClick Event.
+        /// When triggered, wait until event has finnished.
+        /// Then Update CategoryList.
+        /// </summary>
+
+        private void CategoryList_Click(object sender, EventArgs e)
         {
             BeginInvoke(new MethodInvoker(ShowCategories), null);
         }
+
+        /// <summary>
+        /// Updates CategoryList.
+        /// If no items are checked, disable RemoveCategoryButton.
+        /// Updates products, in case user just unchecked the last category.
+        /// If user checked a category or there are more checked items left, we want to filter the products accordingly.
+        /// Loop through every checked item and add its name to our filter.
+        /// Update products and enable RemoveCategoryButton.
+        /// </summary>
 
         private void ShowCategories()
         {
@@ -190,7 +229,7 @@ namespace Vitvarubutik_Admin.Tables.Produkt
             {
                 categories = "";
                 RemoveCategoryButton.Enabled = false;
-                UpdateItemList();
+                UpdateProducts();
                 return;
             }
 
@@ -204,7 +243,7 @@ namespace Vitvarubutik_Admin.Tables.Produkt
                     categories += " '" + CategoryList.CheckedItems[i].ToString() + "'";
             }
 
-            UpdateItemList();
+            UpdateProducts();
             RemoveCategoryButton.Enabled = true;
         }
     }
