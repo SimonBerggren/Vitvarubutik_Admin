@@ -36,7 +36,6 @@ namespace Vitvarubutik_Admin.Tables.Kampanj
             this.Date_TO = new System.Windows.Forms.DateTimePicker();
             this.Button = new System.Windows.Forms.Button();
             this.BeskrivningTextBox = new System.Windows.Forms.RichTextBox();
-            this.NyProduktButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Box_Name
@@ -98,22 +97,11 @@ namespace Vitvarubutik_Admin.Tables.Kampanj
             this.BeskrivningTextBox.TabIndex = 6;
             this.BeskrivningTextBox.Text = "Beskrivning";
             // 
-            // NyProduktButton
-            // 
-            this.NyProduktButton.Location = new System.Drawing.Point(160, 207);
-            this.NyProduktButton.Name = "NyProduktButton";
-            this.NyProduktButton.Size = new System.Drawing.Size(112, 31);
-            this.NyProduktButton.TabIndex = 7;
-            this.NyProduktButton.Text = "Lägg till Produkter";
-            this.NyProduktButton.UseVisualStyleBackColor = true;
-            this.NyProduktButton.Click += new System.EventHandler(this.NyProduktButton_Click);
-            // 
             // AddKampanjForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(285, 250);
-            this.Controls.Add(this.NyProduktButton);
             this.Controls.Add(this.BeskrivningTextBox);
             this.Controls.Add(this.Button);
             this.Controls.Add(this.Date_TO);
@@ -137,6 +125,5 @@ namespace Vitvarubutik_Admin.Tables.Kampanj
         private System.Windows.Forms.DateTimePicker Date_TO;
         private System.Windows.Forms.Button Button;
         private RichTextBox BeskrivningTextBox;
-        private Button NyProduktButton;
     }
 }

@@ -44,7 +44,7 @@ namespace Vitvarubutik_Admin
 
         // Main Connection
 
-        public static MySqlConnection conn;
+        static MySqlConnection conn;
 
         public static MySqlDataReader RunQuery(string query)
         {

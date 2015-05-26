@@ -32,6 +32,7 @@
             this.EditKampanjButton = new System.Windows.Forms.Button();
             this.AddKampanjButton = new System.Windows.Forms.Button();
             this.listKampanj = new System.Windows.Forms.ListBox();
+            this.AddProduktButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // RemoveKampanjButton
@@ -71,12 +72,25 @@
             this.listKampanj.Name = "listKampanj";
             this.listKampanj.Size = new System.Drawing.Size(596, 251);
             this.listKampanj.TabIndex = 11;
+            this.listKampanj.SelectedIndexChanged += new System.EventHandler(this.EnableButton);
+            // 
+            // AddProduktButton
+            // 
+            this.AddProduktButton.Enabled = false;
+            this.AddProduktButton.Location = new System.Drawing.Point(9, 140);
+            this.AddProduktButton.Name = "AddProduktButton";
+            this.AddProduktButton.Size = new System.Drawing.Size(135, 32);
+            this.AddProduktButton.TabIndex = 15;
+            this.AddProduktButton.Text = "Lägg till produkt";
+            this.AddProduktButton.UseVisualStyleBackColor = true;
+            this.AddProduktButton.Click += new System.EventHandler(this.AddProduktButton_Click);
             // 
             // ShowKampanjForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(754, 272);
+            this.Controls.Add(this.AddProduktButton);
             this.Controls.Add(this.RemoveKampanjButton);
             this.Controls.Add(this.EditKampanjButton);
             this.Controls.Add(this.AddKampanjButton);
@@ -93,6 +107,7 @@
         private System.Windows.Forms.Button EditKampanjButton;
         private System.Windows.Forms.Button AddKampanjButton;
         private System.Windows.Forms.ListBox listKampanj;
+        private System.Windows.Forms.Button AddProduktButton;
 
     }
 }

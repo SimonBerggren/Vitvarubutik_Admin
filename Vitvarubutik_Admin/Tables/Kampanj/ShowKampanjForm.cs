@@ -23,6 +23,14 @@ namespace Vitvarubutik_Admin.Tables.Kampanj
             Show();
         }
 
+        private void EnableButton(object sender, EventArgs e)
+        {
+            if (listKampanj.SelectedIndex < 0)
+                AddProduktButton.Enabled = false;
+            else
+                AddProduktButton.Enabled = true;
+        }
+
         private void AddKampanjButton_Click(object sender, EventArgs e)
         {
             new AddKampanjForm(this);
@@ -39,7 +47,7 @@ namespace Vitvarubutik_Admin.Tables.Kampanj
             if (reader == null) return;
 
             reader.Read();
-            new AddKampanjForm(this, reader.GetInt32(0), reader.GetString(1), reader.GetString(2) ,reader.GetDateTime(3), reader.GetDateTime(4));
+            new AddKampanjForm(this, reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetDateTime(3), reader.GetDateTime(4));
 
             reader.Close();
             Main.CloseConnection();
@@ -80,6 +88,13 @@ namespace Vitvarubutik_Admin.Tables.Kampanj
 
             reader.Close();
             Main.CloseConnection();
+        }
+
+        private void AddProduktButton_Click(object sender, EventArgs e)
+        {
+            if(listKampanj.SelectedIndex < 0) return;
+
+            new ProductToKampanjForm(indexes[listKampanj.SelectedIndex]);
         }
     }
 }

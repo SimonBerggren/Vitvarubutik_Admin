@@ -65,12 +65,5 @@ namespace Vitvarubutik_Admin.Tables.Kampanj
             parent.UpdateItems();
             Close();
         }
-
-        private void NyProduktButton_Click(object sender, EventArgs e)
-        {
-            Button_Click(null, null);
-
-            new ProductToKampanjForm(id);
-        }
     }
 }

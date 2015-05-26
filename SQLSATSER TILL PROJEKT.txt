@@ -1,0 +1,4 @@
+SELECT Kund.Namn, Produkt.Tillverkare, Produkt.Modell, SUM(Produkt.Pris) AS Summa, HarKöpt.Köpsdatum from HarKöpt
+INNER JOIN Kund AS Kund ON HarKöpt.Kundnummer = Kund.Kundnummer
+INNER JOIN Produkt AS Produkt ON HarKöpt.Artikelnummer = Produkt.Artikelnummer
+GROUP BY Kund.Namn
