@@ -28,6 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.Kategori = new System.Windows.Forms.ComboBox();
+            this.InköpsTextBox = new System.Windows.Forms.TextBox();
+            this.LeverantörTextBox = new System.Windows.Forms.TextBox();
+            this.PictureBox = new System.Windows.Forms.PictureBox();
             this.ImageTextBox = new System.Windows.Forms.TextBox();
             this.AntalTextBox = new System.Windows.Forms.TextBox();
             this.AddButton = new System.Windows.Forms.Button();
@@ -36,12 +40,44 @@
             this.EnergiTextBox = new System.Windows.Forms.TextBox();
             this.ModelTextBox = new System.Windows.Forms.TextBox();
             this.TillverkareTextBox = new System.Windows.Forms.TextBox();
-            this.TypeTextBox = new System.Windows.Forms.TextBox();
-            this.PictureBox = new System.Windows.Forms.PictureBox();
-            this.LeverantörTextBox = new System.Windows.Forms.TextBox();
-            this.InköpsTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).BeginInit();
             this.SuspendLayout();
+            // 
+            // Kategori
+            // 
+            this.Kategori.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Kategori.FormattingEnabled = true;
+            this.Kategori.Location = new System.Drawing.Point(12, 68);
+            this.Kategori.Name = "Kategori";
+            this.Kategori.Size = new System.Drawing.Size(100, 21);
+            this.Kategori.TabIndex = 3;
+            this.Kategori.SelectedIndexChanged += new System.EventHandler(this.Kategori_SelectedIndexChanged);
+            this.Kategori.Leave += new System.EventHandler(this.Kategori_Leave);
+            // 
+            // InköpsTextBox
+            // 
+            this.InköpsTextBox.Location = new System.Drawing.Point(634, 38);
+            this.InköpsTextBox.Name = "InköpsTextBox";
+            this.InköpsTextBox.Size = new System.Drawing.Size(100, 20);
+            this.InköpsTextBox.TabIndex = 9;
+            this.InköpsTextBox.Text = "Inköpspris";
+            // 
+            // LeverantörTextBox
+            // 
+            this.LeverantörTextBox.Location = new System.Drawing.Point(634, 12);
+            this.LeverantörTextBox.Name = "LeverantörTextBox";
+            this.LeverantörTextBox.Size = new System.Drawing.Size(100, 20);
+            this.LeverantörTextBox.TabIndex = 8;
+            this.LeverantörTextBox.Text = "Leverantör";
+            // 
+            // PictureBox
+            // 
+            this.PictureBox.Location = new System.Drawing.Point(469, 16);
+            this.PictureBox.Name = "PictureBox";
+            this.PictureBox.Size = new System.Drawing.Size(159, 98);
+            this.PictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PictureBox.TabIndex = 10;
+            this.PictureBox.TabStop = false;
             // 
             // ImageTextBox
             // 
@@ -112,44 +148,12 @@
             this.TillverkareTextBox.TabIndex = 1;
             this.TillverkareTextBox.Text = "Tillverkare";
             // 
-            // TypeTextBox
-            // 
-            this.TypeTextBox.Location = new System.Drawing.Point(12, 68);
-            this.TypeTextBox.Name = "TypeTextBox";
-            this.TypeTextBox.Size = new System.Drawing.Size(100, 20);
-            this.TypeTextBox.TabIndex = 3;
-            this.TypeTextBox.Text = "Produkt Typ";
-            // 
-            // PictureBox
-            // 
-            this.PictureBox.Location = new System.Drawing.Point(469, 16);
-            this.PictureBox.Name = "PictureBox";
-            this.PictureBox.Size = new System.Drawing.Size(159, 98);
-            this.PictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.PictureBox.TabIndex = 10;
-            this.PictureBox.TabStop = false;
-            // 
-            // LeverantörTextBox
-            // 
-            this.LeverantörTextBox.Location = new System.Drawing.Point(634, 12);
-            this.LeverantörTextBox.Name = "LeverantörTextBox";
-            this.LeverantörTextBox.Size = new System.Drawing.Size(100, 20);
-            this.LeverantörTextBox.TabIndex = 8;
-            this.LeverantörTextBox.Text = "Leverantör";
-            // 
-            // InköpsTextBox
-            // 
-            this.InköpsTextBox.Location = new System.Drawing.Point(634, 38);
-            this.InköpsTextBox.Name = "InköpsTextBox";
-            this.InköpsTextBox.Size = new System.Drawing.Size(100, 20);
-            this.InköpsTextBox.TabIndex = 9;
-            this.InköpsTextBox.Text = "Inköpspris";
-            // 
             // AddProductForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(747, 178);
+            this.Controls.Add(this.Kategori);
             this.Controls.Add(this.InköpsTextBox);
             this.Controls.Add(this.LeverantörTextBox);
             this.Controls.Add(this.PictureBox);
@@ -161,7 +165,6 @@
             this.Controls.Add(this.EnergiTextBox);
             this.Controls.Add(this.ModelTextBox);
             this.Controls.Add(this.TillverkareTextBox);
-            this.Controls.Add(this.TypeTextBox);
             this.Name = "AddProductForm";
             this.Text = "AddProductForm";
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).EndInit();
@@ -180,9 +183,9 @@
         private System.Windows.Forms.TextBox EnergiTextBox;
         private System.Windows.Forms.TextBox ModelTextBox;
         private System.Windows.Forms.TextBox TillverkareTextBox;
-        private System.Windows.Forms.TextBox TypeTextBox;
         private System.Windows.Forms.PictureBox PictureBox;
         private System.Windows.Forms.TextBox LeverantörTextBox;
         private System.Windows.Forms.TextBox InköpsTextBox;
+        private System.Windows.Forms.ComboBox Kategori;
     }
 }

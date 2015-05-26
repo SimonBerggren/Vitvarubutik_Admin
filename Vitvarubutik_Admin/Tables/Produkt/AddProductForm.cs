@@ -22,17 +22,26 @@ namespace Vitvarubutik_Admin.Tables.Produkt
         {
             this.parent = parent;
             InitializeComponent();
+            LoadCategories();
             ShowDialog(parent);
         }
 
         public AddProductForm(ShowProduktsForm parent, int id, string Tillverkare, string Modell, string Typ, string Energiklass,
                                                        string Beskrivning, int Pris, string Bild_Länk, int Antal, string Leverantör, int Inköpspris)
         {
+            altering = true;
+
             this.parent = parent;
             this.id = id;
-            InitializeComponent();
 
-            TypeTextBox.Text = Typ;
+            InitializeComponent();
+            AddButton.Text = "Spara";
+
+            LoadCategories();
+            Kategori.SelectedIndex = Kategori.FindStringExact(Typ);
+            
+            LoadImage();
+
             TillverkareTextBox.Text = Tillverkare;
             ModelTextBox.Text = Modell;
             EnergiTextBox.Text = Energiklass;
@@ -43,12 +52,9 @@ namespace Vitvarubutik_Admin.Tables.Produkt
             LeverantörTextBox.Text = Leverantör;
             InköpsTextBox.Text = Inköpspris.ToString();
 
-            AddButton.Text = "Spara";
-            altering = true;
-            LoadImage();
-
             ShowDialog(parent);
         }
+
         private void ImageTextBox_TextChanged(object sender, EventArgs e)
         {
             LoadImage();
@@ -67,14 +73,14 @@ namespace Vitvarubutik_Admin.Tables.Produkt
             if (!altering)
             {
                 reader = Main.RunQuery("INSERT INTO Produkt (Tillverkare, Modell, Typ, Energiklass, Beskrivning, Pris, Bild_Länk, Lagerantal, Leverantör, Inköpspris) " +
-                    "VALUES ('" + TillverkareTextBox.Text + "', '" + ModelTextBox.Text + "', '" + TypeTextBox.Text +
+                    "VALUES ('" + TillverkareTextBox.Text + "', '" + ModelTextBox.Text + "', '" + Kategori.Text +
                     "', '" + EnergiTextBox.Text + "', '" + BeskrivningTextBox.Text + "', " + pris + ", '" + ImageTextBox.Text +
                     "', " + AntalTextBox.Text + ", '" + LeverantörTextBox.Text + "', " + InköpsTextBox.Text + ");");
             }
             else
             {
                 reader = Main.RunQuery("UPDATE Produkt " +
-                    "SET Tillverkare='" + TillverkareTextBox.Text + "', Modell='" + ModelTextBox.Text + "', Typ='" + TypeTextBox.Text + "', Energiklass='" +
+                    "SET Tillverkare='" + TillverkareTextBox.Text + "', Modell='" + ModelTextBox.Text + "', Typ='" + Kategori.Text + "', Energiklass='" +
                     EnergiTextBox.Text + "', Beskrivning='" + BeskrivningTextBox.Text + "', Pris=" + PrisTextBox.Text + ", Bild_Länk='" + ImageTextBox.Text + "', " +
                     "Lagerantal=" + AntalTextBox.Text + ", Leverantör='" + LeverantörTextBox.Text + "', Inköpspris=" + InköpsTextBox.Text + " " +
                     "WHERE Artikelnummer=" + id + ";");
@@ -83,6 +89,7 @@ namespace Vitvarubutik_Admin.Tables.Produkt
             if (reader == null) return;
 
             parent.UpdateItemList();
+            parent.UpdateCategoryList();
 
             reader.Close();
             Main.CloseConnection();
@@ -100,6 +107,57 @@ namespace Vitvarubutik_Admin.Tables.Produkt
             {
                 Console.WriteLine(e.Message);
                 PictureBox.Load("http://www.hospitalsafetyscore.org/media/image/hss-alert-icon.png");
+            }
+        }
+
+        private void Kategori_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (Kategori.SelectedIndex == Kategori.Items.Count - 1)
+                Kategori.DropDownStyle = ComboBoxStyle.Simple;
+        }
+
+        // If kategoritextbox has focus and you press exit, reset to dropdown
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape && Kategori.Focused)
+            {
+                Kategori.DropDownStyle = ComboBoxStyle.DropDownList;
+                Kategori.SelectedIndex = 0;
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void LoadCategories()
+        {
+            MySqlDataReader reader = Main.RunQuery("SELECT Typ FROM Produkt GROUP BY Typ");
+            if (reader == null) return;
+
+            Kategori.Items.Clear();
+
+            if(!altering)
+            Kategori.Items.Add("Kategori");
+
+            while (reader.Read())
+            {
+                Kategori.Items.Add(reader.GetString(0));
+            }
+            Kategori.Items.Add("Lägg till...");
+            Kategori.SelectedIndex = 0;
+
+            reader.Close();
+            Main.CloseConnection();
+        }
+
+        private void Kategori_Leave(object sender, EventArgs e)
+        {
+            if (Kategori.SelectedIndex < 0) return;
+
+            if (Kategori.Items[Kategori.SelectedIndex].ToString() == "Lägg till...")
+            {
+                Kategori.DropDownStyle = ComboBoxStyle.DropDownList;
+                Kategori.SelectedIndex = 0;
             }
         }
     }

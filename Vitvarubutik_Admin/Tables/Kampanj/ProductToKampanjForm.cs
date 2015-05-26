@@ -31,9 +31,9 @@ namespace Vitvarubutik_Admin.Tables.Kampanj
 
         private void GetProducts()
         {
-            ProductList.Items.Clear();
-            AllProductList.Items.Clear();
             allIndexes.Clear();
+            AllProductList.Items.Clear();
+            ProductList.Items.Clear();
             kampanjIndexes.Clear();
             exception = "";
 
@@ -43,13 +43,16 @@ namespace Vitvarubutik_Admin.Tables.Kampanj
                                                  + "WHERE Kampanj.KampanjID = " + id);
             if (reader == null) return;
 
+            // Adds and displays all products in selected kampanj
+            // Prevents all items in selected kampanj to be showed again in list of all products
+
             while (reader.Read())
             {
                 kampanjIndexes.Add(reader.GetInt32(3));
                 string line = reader.GetString(0) + ", " + reader.GetString(1) + ", " + reader.GetString(2);
                 ProductList.Items.Add(line);
             }
-            Console.WriteLine(kampanjIndexes.Count);
+
             if (kampanjIndexes.Count > 0)
             {
                 exception = " WHERE ";
@@ -62,7 +65,9 @@ namespace Vitvarubutik_Admin.Tables.Kampanj
                 }
             }
 
-            reader = Main.RunQuery("SELECT * FROM Produkt " + exception);
+            // Adds all products that are not in kampanj to list
+
+            reader = Main.RunQuery("SELECT Artikelnummer, Tillverkare, Modell, Typ FROM Produkt " + exception);
 
             if (reader == null) return;
 
