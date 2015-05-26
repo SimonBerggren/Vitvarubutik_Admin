@@ -1,4 +1,13 @@
-SELECT Kund.Namn, Produkt.Tillverkare, Produkt.Modell, SUM(Produkt.Pris) AS Summa, HarKöpt.Köpsdatum from HarKöpt
+
+
+SELECT Kund.Namn, Produkt.Tillverkare, Produkt.Modell, SUM(Produkt.Pris * HarKöpt.Antal) AS Summa, HarKöpt.Köpsdatum from HarKöpt
 INNER JOIN Kund AS Kund ON HarKöpt.Kundnummer = Kund.Kundnummer
 INNER JOIN Produkt AS Produkt ON HarKöpt.Artikelnummer = Produkt.Artikelnummer
-GROUP BY Kund.Namn
+
+FÖR ATT SE TOTALSUMMA FÖR EN KUND
+
+ - GROUP BY Kund.Namn
+
+FÖR ATT SE ALLA KÖP MÖJLIGA FÖR ALLA KUNDER
+
+ - GROUP BY HarKöpt.Kvittonummer

@@ -38,11 +38,12 @@ Slutdatum date
 );
 
 CREATE TABLE HarKöpt (
+Kvittonummer int PRIMARY KEY AUTO_INCREMENT,
 Kundnummer int,
 Artikelnummer int,
+Antal int NOT NULL,
 Köpsdatum date,
 
-PRIMARY KEY (Kundnummer, Artikelnummer),
 FOREIGN KEY (Kundnummer) REFERENCES Kund(Kundnummer),
 FOREIGN KEY (Artikelnummer) REFERENCES Produkt(Artikelnummer)
 );

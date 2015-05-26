@@ -1,2 +1,0 @@
-Lägga till produkt till kampanj - innan man skapat kampanjen?
-Ta bort produkt när den är med i en kampanj?
