@@ -32,6 +32,8 @@
             this.AllProductList = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.AddButton = new System.Windows.Forms.Button();
+            this.RemoveButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ProductList
@@ -68,11 +70,33 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Alla produkter";
             // 
+            // AddButton
+            // 
+            this.AddButton.Location = new System.Drawing.Point(252, 68);
+            this.AddButton.Name = "AddButton";
+            this.AddButton.Size = new System.Drawing.Size(43, 23);
+            this.AddButton.TabIndex = 4;
+            this.AddButton.Text = "<<";
+            this.AddButton.UseVisualStyleBackColor = true;
+            this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
+            // 
+            // RemoveButton
+            // 
+            this.RemoveButton.Location = new System.Drawing.Point(252, 97);
+            this.RemoveButton.Name = "RemoveButton";
+            this.RemoveButton.Size = new System.Drawing.Size(43, 23);
+            this.RemoveButton.TabIndex = 5;
+            this.RemoveButton.Text = ">>";
+            this.RemoveButton.UseVisualStyleBackColor = true;
+            this.RemoveButton.Click += new System.EventHandler(this.RemoveButton_Click);
+            // 
             // ProductToKampanjForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(546, 279);
+            this.Controls.Add(this.RemoveButton);
+            this.Controls.Add(this.AddButton);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.AllProductList);
@@ -90,5 +114,7 @@
         private System.Windows.Forms.ListBox AllProductList;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button AddButton;
+        private System.Windows.Forms.Button RemoveButton;
     }
 }

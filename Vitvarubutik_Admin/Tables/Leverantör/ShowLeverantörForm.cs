@@ -35,7 +35,7 @@ namespace Vitvarubutik_Admin.Tables.Leverantör
 
             string id = indexes[listLeverantör.SelectedIndex];
 
-            MySqlDataReader reader = Main.RunQuery("SELECT * FROM Leverantör");
+            MySqlDataReader reader = Main.RunQuery("SELECT * FROM Leverantör WHERE Namn = '" + id + "'");
 
             reader.Read();
             new AddLeverantörForm(this, reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3));

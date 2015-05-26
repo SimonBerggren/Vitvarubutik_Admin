@@ -14,8 +14,11 @@ namespace Vitvarubutik_Admin.Tables.Kampanj
 {
     public partial class ProductToKampanjForm : FixedForm
     {
-        List<int> indexes = new List<int>();
+        List<int> allIndexes = new List<int>();
+        List<int> kampanjIndexes = new List<int>();
+
         int id;
+        string exception = "";
 
         public ProductToKampanjForm(int id)
         {
@@ -29,9 +32,12 @@ namespace Vitvarubutik_Admin.Tables.Kampanj
         private void GetProducts()
         {
             ProductList.Items.Clear();
-            indexes.Clear();
+            AllProductList.Items.Clear();
+            allIndexes.Clear();
+            kampanjIndexes.Clear();
+            exception = "";
 
-            MySqlDataReader reader = Main.RunQuery("SELECT Produkt.Tillverkare, Produkt.Modell, Produkt.Typ FROM IngårI "
+            MySqlDataReader reader = Main.RunQuery("SELECT Produkt.Tillverkare, Produkt.Modell, Produkt.Typ, Produkt.Artikelnummer FROM IngårI "
                                                  + "INNER JOIN Kampanj Kampanj ON IngårI.KampanjID = Kampanj.KampanjID "
                                                  + "INNER JOIN Produkt Produkt ON IngårI.Artikelnummer = Produkt.Artikelnummer "
                                                  + "WHERE Kampanj.KampanjID = " + id);
@@ -39,12 +45,68 @@ namespace Vitvarubutik_Admin.Tables.Kampanj
 
             while (reader.Read())
             {
+                kampanjIndexes.Add(reader.GetInt32(3));
                 string line = reader.GetString(0) + ", " + reader.GetString(1) + ", " + reader.GetString(2);
                 ProductList.Items.Add(line);
+            }
+            Console.WriteLine(kampanjIndexes.Count);
+            if (kampanjIndexes.Count > 0)
+            {
+                exception = " WHERE ";
+                for (int i = 0; i < kampanjIndexes.Count; i++)
+                {
+                    if (i < kampanjIndexes.Count - 1)
+                        exception += " Artikelnummer != " + kampanjIndexes[i] + " AND ";
+                    else
+                        exception += " Artikelnummer != " + kampanjIndexes[i];
+                }
+            }
+
+            reader = Main.RunQuery("SELECT * FROM Produkt " + exception);
+
+            if (reader == null) return;
+
+            while (reader.Read())
+            {
+                allIndexes.Add(reader.GetInt32(0));
+                string line = "Tillverkare: " + reader.GetString(1) + " Modell: " + reader.GetString(2) + " Typ: " + reader.GetString(3);
+                AllProductList.Items.Add(line);
             }
 
             reader.Close();
             Main.CloseConnection();
+        }
+
+        private void AddButton_Click(object sender, EventArgs e)
+        {
+            if (allIndexes[AllProductList.SelectedIndex] < 0) return;
+
+            int id = allIndexes[AllProductList.SelectedIndex];
+
+            MySqlDataReader reader;
+
+            reader = Main.RunQuery("INSERT INTO IngårI VALUES (" + this.id + ", " + id + ", 10)");
+
+            reader.Close();
+            Main.CloseConnection();
+
+            GetProducts();
+        }
+
+        private void RemoveButton_Click(object sender, EventArgs e)
+        {
+            if (kampanjIndexes[ProductList.SelectedIndex] < 0) return;
+
+            int id = kampanjIndexes[ProductList.SelectedIndex];
+
+            MySqlDataReader reader;
+
+            reader = Main.RunQuery("DELETE FROM IngårI WHERE Artikelnummer = " + id);
+
+            reader.Close();
+            Main.CloseConnection();
+
+            GetProducts();
         }
     }
 }

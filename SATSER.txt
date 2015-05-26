@@ -42,6 +42,7 @@ Kundnummer int,
 Artikelnummer int,
 Köpsdatum date,
 
+PRIMARY KEY (Kundnummer, Artikelnummer),
 FOREIGN KEY (Kundnummer) REFERENCES Kund(Kundnummer),
 FOREIGN KEY (Artikelnummer) REFERENCES Produkt(Artikelnummer)
 );
@@ -51,6 +52,7 @@ KampanjID int,
 Artikelnummer int,
 Rabatt int NOT NULL,
 
+PRIMARY KEY (KampanjID, Artikelnummer),
 FOREIGN KEY (KampanjID) REFERENCES Kampanj(KampanjID),
 FOREIGN KEY (Artikelnummer) REFERENCES Produkt(Artikelnummer)
 );

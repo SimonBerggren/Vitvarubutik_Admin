@@ -34,8 +34,11 @@ namespace Vitvarubutik_Admin.Tables.Produkt
                 return;
 
             int id = indexes[listProducts.SelectedIndex];
+            MySqlDataReader reader;
 
-            MySqlDataReader reader = Main.RunQuery("DELETE FROM Produkt WHERE Artikelnummer = " + id);
+            reader = Main.RunQuery("DELETE FROM IngårI WHERE Artikelnummer = " + id);
+
+            reader = Main.RunQuery("DELETE FROM Produkt WHERE Artikelnummer = " + id);
             if (reader == null) return;
 
             reader.Close();
