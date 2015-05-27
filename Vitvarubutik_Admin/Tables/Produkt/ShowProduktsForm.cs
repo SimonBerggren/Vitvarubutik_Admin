@@ -18,14 +18,12 @@ namespace Vitvarubutik_Admin.Tables.Produkt
 
         private string categories = "";
 
-        private bool initialLoad = true;
-
         public ShowProduktsForm()
         {
             InitializeComponent();
 
             UpdateCategoryList();
-            initialLoad = false;
+            InitialCheck();
 
             Show();
         }
@@ -83,9 +81,9 @@ namespace Vitvarubutik_Admin.Tables.Produkt
 
         private void ViewBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ViewBox.SelectedItem.ToString() == "Alla produkter")
+            if (ViewBox.SelectedIndex == 0)
                 UpdateProducts();
-            else if (ViewBox.SelectedItem.ToString() == "Få produkter")
+            else if (ViewBox.SelectedIndex == 1)
                 UpdateFewProducts();
         }
 
@@ -116,24 +114,44 @@ namespace Vitvarubutik_Admin.Tables.Produkt
 
         /// <summary>
         /// Used for checking if there only exists 3 or fewer products of any kind.
-        /// If this is the first time called, send a prompt where user chooses whether to display them or not.
-        /// If user accepts, fill list with concerned products.
+        /// If this is the case, 
+        /// If user accepts, select and fill correct list with concerned products.
+        /// </summary>
+        /// 
+
+        private void InitialCheck()
+        {
+            MySqlDataReader reader = Main.RunQuery("SELECT COUNT(*), Artikelnummer, Tillverkare, Modell, Typ, Lagerantal FROM Produkt WHERE Lagerantal <= 3 GROUP BY Artikelnummer ORDER BY Lagerantal");
+            if (reader == null) return;
+
+            bool thereIsProducts = true;
+
+            if (!reader.Read())
+                thereIsProducts = false;
+
+
+            if (thereIsProducts)
+            {
+                var warningMsg = MessageBox.Show("Vissa produkter håller på att gå ut! Klicka på Ja för att visa dem.", "", MessageBoxButtons.YesNo);
+
+                if (warningMsg == DialogResult.Yes)
+                    ViewBox.SelectedIndex = 1;
+                else if (warningMsg == DialogResult.No)
+                    ViewBox.SelectedIndex = 0;
+            }
+            else
+                ViewBox.SelectedIndex = 0;
+
+        }
+
+        /// <summary>
+        /// Used for updating and filling list with products there only are 3 or less of
         /// </summary>
 
         private void UpdateFewProducts()
         {
             MySqlDataReader reader = Main.RunQuery("SELECT COUNT(*), Artikelnummer, Tillverkare, Modell, Typ, Lagerantal FROM Produkt WHERE Lagerantal <= 3 GROUP BY Artikelnummer ORDER BY Lagerantal");
             if (reader == null) return;
-
-            if (initialLoad)
-            {
-                var warningMsg = MessageBox.Show("Vissa produkter håller på att gå ut! Klicka på Ja för att visa dem.", "", MessageBoxButtons.YesNo);
-
-                if (warningMsg == DialogResult.Yes)
-                    ViewBox.SelectedIndex = ViewBox.FindString("Få produkter");
-                else
-                    ViewBox.SelectedIndex = ViewBox.FindString("Alla produkter");
-            }
 
             listProducts.Items.Clear();
             indexes.Clear();
@@ -200,7 +218,6 @@ namespace Vitvarubutik_Admin.Tables.Produkt
             Main.CloseConnection();
 
             UpdateProducts();
-
         }
 
         /// <summary>

@@ -26,7 +26,7 @@ namespace Vitvarubutik_Admin.Tables.Kampanj
             ShowDialog(parent);
         }
 
-        public AddKampanjForm(ShowKampanjForm parent, int ID, string Namn, string Beskrivning, DateTime StartDatum, DateTime SlutDatum)
+        public AddKampanjForm(ShowKampanjForm parent, int ID, string Namn, string Beskrivning, DateTime StartDatum, DateTime SlutDatum, string Rabatt)
         {
             this.parent = parent;
             this.id = ID;
@@ -38,6 +38,7 @@ namespace Vitvarubutik_Admin.Tables.Kampanj
             BeskrivningTextBox.Text = Beskrivning;
             Date_FROM.Value = StartDatum;
             Date_TO.Value = SlutDatum;
+            PercentTextBox.Text = Rabatt;
 
             Button.Text = "Spara";
             ShowDialog(parent);
@@ -51,12 +52,12 @@ namespace Vitvarubutik_Admin.Tables.Kampanj
             {
                 reader = Main.RunQuery("UPDATE Kampanj "
                    + "SET Namn = '" + Box_Name.Text + "', Beskrivning = '" + BeskrivningTextBox.Text + "', StartDatum = " + Date_FROM.Value.ToString("yyyyMMdd") + ", SlutDatum = " + Date_TO.Value.ToString("yyyyMMdd")
-                   + " WHERE KampanjID = " + id);
+                   + ", Rabatt = " + PercentTextBox.Text + " WHERE KampanjID = " + id);
             }
             else
             {
-                reader = Main.RunQuery("INSERT INTO Kampanj (Namn, Beskrivning, StartDatum, SlutDatum)"
-                   + " VALUES ('" + Box_Name.Text + "', '" + BeskrivningTextBox.Text + "', " + Date_FROM.Value.ToString("yyyyMMdd") + ", " + Date_TO.Value.ToString("yyyyMMdd") + ");");
+                reader = Main.RunQuery("INSERT INTO Kampanj (Namn, Beskrivning, StartDatum, SlutDatum, Rabatt)"
+                   + " VALUES ('" + Box_Name.Text + "', '" + BeskrivningTextBox.Text + "', " + Date_FROM.Value.ToString("yyyyMMdd") + ", " + Date_TO.Value.ToString("yyyyMMdd") + ", " + PercentTextBox.Text + ");");
             }
 
             reader.Close();

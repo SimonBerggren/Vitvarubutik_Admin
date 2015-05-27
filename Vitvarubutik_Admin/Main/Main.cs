@@ -24,8 +24,6 @@ namespace Vitvarubutik_Admin
         public static string Username { get; set; }
         public static string Password { get; set; }
 
-        public string Query { get; private set; }
-
         private bool Established_Connection { get; set; }
 
         public Main()
@@ -37,7 +35,6 @@ namespace Vitvarubutik_Admin
             Database = "ae6945";
             Username = "ae6945";
             Password = "TomatSallad";
-            Query = "";
 
             new NewConnectionForm(this);
         }

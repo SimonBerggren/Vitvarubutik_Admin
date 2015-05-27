@@ -88,7 +88,7 @@ namespace Vitvarubutik_Admin.Tables.Produkt
 
             if (reader == null) return;
 
-            parent.UpdateItemList();
+            parent.UpdateProducts();
             parent.UpdateCategoryList();
 
             reader.Close();

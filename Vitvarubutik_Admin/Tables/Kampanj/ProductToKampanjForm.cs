@@ -90,7 +90,7 @@ namespace Vitvarubutik_Admin.Tables.Kampanj
 
             MySqlDataReader reader;
 
-            reader = Main.RunQuery("INSERT INTO IngårI VALUES (" + this.id + ", " + id + ", 10)");
+            reader = Main.RunQuery("INSERT INTO IngårI VALUES (" + this.id + ", " + id + ")");
             if (reader == null) return;
 
             reader.Close();

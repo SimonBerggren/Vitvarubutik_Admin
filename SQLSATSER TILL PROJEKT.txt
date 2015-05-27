@@ -1,5 +1,3 @@
-
-
 SELECT Kund.Namn, Produkt.Tillverkare, Produkt.Modell, SUM(Produkt.Pris * HarKöpt.Antal) AS Summa, HarKöpt.Köpsdatum from HarKöpt
 INNER JOIN Kund AS Kund ON HarKöpt.Kundnummer = Kund.Kundnummer
 INNER JOIN Produkt AS Produkt ON HarKöpt.Artikelnummer = Produkt.Artikelnummer
@@ -11,3 +9,12 @@ FÖR ATT SE TOTALSUMMA FÖR EN KUND
 FÖR ATT SE ALLA KÖP MÖJLIGA FÖR ALLA KUNDER
 
  - GROUP BY HarKöpt.Kvittonummer
+
+
+-------------------------------
+|    Se rabatterat pris	      |
+-------------------------------
+
+SELECT Produkt.Tillverkare, Produkt.Modell, Produkt.Typ, CAST(SUM(Produkt.Pris * (1 - ( IngårI.Rabatt / 100))) AS UNSIGNED) AS Pris FROM Produkt
+JOIN IngårI ON Produkt.Artikelnummer = IngårI.Artikelnummer
+GROUP BY Produkt.Artikelnummer

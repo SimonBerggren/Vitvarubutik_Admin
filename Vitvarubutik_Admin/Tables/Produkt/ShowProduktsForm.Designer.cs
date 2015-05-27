@@ -110,7 +110,6 @@
             this.ViewBox.Name = "ViewBox";
             this.ViewBox.Size = new System.Drawing.Size(134, 21);
             this.ViewBox.TabIndex = 10;
-            this.ViewBox.SelectedIndex = 0;
             this.ViewBox.SelectedIndexChanged += new System.EventHandler(this.ViewBox_SelectedIndexChanged);
             // 
             // ShowProduktsForm

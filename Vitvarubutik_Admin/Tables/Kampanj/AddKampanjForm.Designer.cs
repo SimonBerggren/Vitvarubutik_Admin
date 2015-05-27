@@ -36,6 +36,8 @@ namespace Vitvarubutik_Admin.Tables.Kampanj
             this.Date_TO = new System.Windows.Forms.DateTimePicker();
             this.Button = new System.Windows.Forms.Button();
             this.BeskrivningTextBox = new System.Windows.Forms.RichTextBox();
+            this.PercentTextBox = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // Box_Name
@@ -97,11 +99,31 @@ namespace Vitvarubutik_Admin.Tables.Kampanj
             this.BeskrivningTextBox.TabIndex = 6;
             this.BeskrivningTextBox.Text = "Beskrivning";
             // 
+            // PercentTextBox
+            // 
+            this.PercentTextBox.Location = new System.Drawing.Point(190, 67);
+            this.PercentTextBox.MaxLength = 3;
+            this.PercentTextBox.Name = "PercentTextBox";
+            this.PercentTextBox.Size = new System.Drawing.Size(82, 20);
+            this.PercentTextBox.TabIndex = 7;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(202, 41);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(61, 17);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "% rabatt";
+            // 
             // AddKampanjForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(285, 250);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.PercentTextBox);
             this.Controls.Add(this.BeskrivningTextBox);
             this.Controls.Add(this.Button);
             this.Controls.Add(this.Date_TO);
@@ -125,5 +147,7 @@ namespace Vitvarubutik_Admin.Tables.Kampanj
         private System.Windows.Forms.DateTimePicker Date_TO;
         private System.Windows.Forms.Button Button;
         private RichTextBox BeskrivningTextBox;
+        private TextBox PercentTextBox;
+        private Label label1;
     }
 }
