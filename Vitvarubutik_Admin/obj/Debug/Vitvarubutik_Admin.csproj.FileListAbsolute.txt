@@ -57,3 +57,4 @@ C:\Users\Simon\Desktop\Vitvarubutik_Admin\Vitvarubutik_Admin\obj\Debug\Vitvarubu
 C:\Users\Simon\Desktop\Vitvarubutik_Admin\Vitvarubutik_Admin\bin\Debug\Vitvarubutik_Admin.exe
 C:\Users\Simon\Desktop\Vitvarubutik_Admin\Vitvarubutik_Admin\bin\Debug\Vitvarubutik_Admin.pdb
 C:\Users\Simon\Desktop\Vitvarubutik_Admin\Vitvarubutik_Admin\obj\Debug\Vitvarubutik_Admin.Tables.Kampanj.ProductToKampanjForm.resources
+C:\Users\Simon\Desktop\Vitvarubutik_Admin\Vitvarubutik_Admin\obj\Debug\Vitvarubutik_Admin.Tables.Produkt.ConnectProductForm.resources

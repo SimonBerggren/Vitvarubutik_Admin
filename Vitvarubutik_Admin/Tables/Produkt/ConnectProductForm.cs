@@ -8,28 +8,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Vitvarubutik_Admin.Utilities;
 
-namespace Vitvarubutik_Admin.Tables.Kampanj
+namespace Vitvarubutik_Admin.Tables.Produkt
 {
-    public partial class ProductToKampanjForm : FixedForm
+    public partial class ConnectProductForm : Form
     {
-        List<int> allIndexes = new List<int>();
-        List<int> kampanjIndexes = new List<int>();
-
-        int kampanjID;
-        string filter = "";
-        string ID_filter;
-        string category = "";
-
-        public ProductToKampanjForm(int KampanjID)
+        public ConnectProductForm(int ProduktID)
         {
-            kampanjID = KampanjID;
+            produktID = ProduktID;
 
             InitializeComponent();
             GetProducts();
             ShowDialog(null);
         }
+        List<int> allIndexes = new List<int>();
+        List<int> kampanjIndexes = new List<int>();
+
+        int produktID;
+        string filter = "";
+        string ID_filter;
+        string category = "";
 
         private void GetProducts()
         {
@@ -43,10 +41,9 @@ namespace Vitvarubutik_Admin.Tables.Kampanj
                 filter = " AND " + filter.TrimStart(' ', 'W', 'H', 'E', 'R', 'E');
 
             string query =
-                " SELECT Produkt.Tillverkare, Produkt.Modell, Produkt.Typ, Produkt.Artikelnummer FROM IngårI "
-              + " INNER JOIN Kampanj ON IngårI.KampanjID = Kampanj.KampanjID "
-              + " INNER JOIN Produkt ON IngårI.Artikelnummer = Produkt.Artikelnummer "
-              + " WHERE Kampanj.KampanjID = " + kampanjID + filter;
+                " SELECT Produkt.Tillverkare, Produkt.Modell, Produkt.Typ, Produkt.Artikelnummer FROM KoppladTill "
+              + " INNER JOIN Produkt ON KoppladTill.KoppladProdukt = Produkt.Artikelnummer "
+              + " WHERE KoppladTill.VisadProdukt = " + produktID + filter;
 
             MySqlDataReader reader = Main.RunQuery(query);
             if (reader == null) return;
@@ -61,10 +58,11 @@ namespace Vitvarubutik_Admin.Tables.Kampanj
                 ProductList.Items.Add(line);
             }
 
+            ID_filter = " WHERE Produkt.Artikelnummer != " + produktID;
+
             if (kampanjIndexes.Count > 0)
             {
-                ID_filter = " WHERE ";
-
+                ID_filter += " AND ";
                 for (int i = 0; i < kampanjIndexes.Count; i++)
                 {
                     if (i < kampanjIndexes.Count - 1)
@@ -73,10 +71,6 @@ namespace Vitvarubutik_Admin.Tables.Kampanj
                         ID_filter += " Produkt.Artikelnummer != " + kampanjIndexes[i];
                 }
             }
-
-            if (ID_filter == "" && filter != "")
-                filter = " WHERE " + filter.TrimStart(' ', 'A', 'N', 'D');
-
 
             // Adds all products that are not in kampanj to list
             string newquery = "SELECT Produkt.Artikelnummer, Produkt.Tillverkare, Produkt.Modell, Produkt.Typ FROM Produkt " + ID_filter + filter;
@@ -105,7 +99,7 @@ namespace Vitvarubutik_Admin.Tables.Kampanj
 
             MySqlDataReader reader;
 
-            reader = Main.RunQuery("INSERT INTO IngårI VALUES (" + kampanjID + ", " + id + ")");
+            reader = Main.RunQuery("INSERT INTO KoppladTill VALUES (" + produktID + ", " + id + ")");
             if (reader == null) return;
 
             reader.Close();
@@ -122,7 +116,7 @@ namespace Vitvarubutik_Admin.Tables.Kampanj
 
             MySqlDataReader reader;
 
-            reader = Main.RunQuery("DELETE FROM IngårI WHERE Artikelnummer = " + id);
+            reader = Main.RunQuery("DELETE FROM KoppladTill WHERE VisadProdukt = " + produktID + " AND KoppladProdukt = " + id);
             if (reader == null) return;
 
             reader.Close();
@@ -137,10 +131,10 @@ namespace Vitvarubutik_Admin.Tables.Kampanj
                 return;
 
             MySqlDataReader reader = null;
-            
+
             for (int i = 0; i < AllProductList.Items.Count; i++)
             {
-                reader = Main.RunQuery("INSERT INTO IngårI VALUES (" + kampanjID +", " + allIndexes[i] + ")");
+                reader = Main.RunQuery("INSERT INTO KoppladTill VALUES (" + produktID + ", " + allIndexes[i] + ")");
             }
 
             if (reader != null)
@@ -155,12 +149,10 @@ namespace Vitvarubutik_Admin.Tables.Kampanj
         {
             if (filter == "")
                 return;
-            else
-                filter = " WHERE " + filter.TrimStart(' ', 'A', 'N', 'D');
 
             MySqlDataReader reader;
 
-            reader = Main.RunQuery("DELETE IngårI FROM IngårI JOIN Produkt ON IngårI.Artikelnummer = Produkt.Artikelnummer " + filter);
+            reader = Main.RunQuery("DELETE KoppladTill FROM KoppladTill JOIN Produkt ON KoppladTill.KoppladProdukt = Produkt.Artikelnummer WHERE KoppladTill.VisadProdukt = " + produktID + filter);
             if (reader == null) return;
 
             reader.Close();
@@ -195,7 +187,7 @@ namespace Vitvarubutik_Admin.Tables.Kampanj
         {
             SelectFilterList.Visible = true;
 
-            MySqlDataReader reader = Main.RunQuery(" SELECT " + category + " FROM Produkt GROUP BY " + category);
+            MySqlDataReader reader = Main.RunQuery(" SELECT " + category + " FROM Produkt WHERE Artikelnummer != " + produktID + " GROUP BY " + category);
             if (reader == null) return;
 
             SelectFilterList.Items.Clear();

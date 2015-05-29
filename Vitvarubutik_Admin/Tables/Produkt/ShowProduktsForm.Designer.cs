@@ -35,11 +35,12 @@
             this.CategoryList = new System.Windows.Forms.CheckedListBox();
             this.RemoveCategoryButton = new System.Windows.Forms.Button();
             this.ViewBox = new System.Windows.Forms.ComboBox();
+            this.ConnectProductButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // DeleteButton
             // 
-            this.DeleteButton.Location = new System.Drawing.Point(12, 132);
+            this.DeleteButton.Location = new System.Drawing.Point(12, 170);
             this.DeleteButton.Name = "DeleteButton";
             this.DeleteButton.Size = new System.Drawing.Size(135, 32);
             this.DeleteButton.TabIndex = 7;
@@ -73,14 +74,14 @@
             this.listProducts.HorizontalScrollbar = this.Enabled;
             this.listProducts.Location = new System.Drawing.Point(154, 12);
             this.listProducts.Name = "listProducts";
-            this.listProducts.Size = new System.Drawing.Size(596, 290);
+            this.listProducts.Size = new System.Drawing.Size(596, 329);
             this.listProducts.TabIndex = 4;
             // 
             // CategoryList
             // 
             this.CategoryList.CheckOnClick = true;
             this.CategoryList.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.CategoryList.Location = new System.Drawing.Point(13, 208);
+            this.CategoryList.Location = new System.Drawing.Point(13, 246);
             this.CategoryList.Name = "CategoryList";
             this.CategoryList.Size = new System.Drawing.Size(135, 94);
             this.CategoryList.Sorted = true;
@@ -91,7 +92,7 @@
             // RemoveCategoryButton
             // 
             this.RemoveCategoryButton.Enabled = false;
-            this.RemoveCategoryButton.Location = new System.Drawing.Point(13, 170);
+            this.RemoveCategoryButton.Location = new System.Drawing.Point(12, 208);
             this.RemoveCategoryButton.Name = "RemoveCategoryButton";
             this.RemoveCategoryButton.Size = new System.Drawing.Size(135, 32);
             this.RemoveCategoryButton.TabIndex = 9;
@@ -112,11 +113,22 @@
             this.ViewBox.TabIndex = 10;
             this.ViewBox.SelectedIndexChanged += new System.EventHandler(this.ViewBox_SelectedIndexChanged);
             // 
+            // ConnectProductButton
+            // 
+            this.ConnectProductButton.Location = new System.Drawing.Point(13, 132);
+            this.ConnectProductButton.Name = "ConnectProductButton";
+            this.ConnectProductButton.Size = new System.Drawing.Size(135, 32);
+            this.ConnectProductButton.TabIndex = 11;
+            this.ConnectProductButton.Text = "Koppla Produkter";
+            this.ConnectProductButton.UseVisualStyleBackColor = true;
+            this.ConnectProductButton.Click += new System.EventHandler(this.ConnectProductButton_Click);
+            // 
             // ShowProduktsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(762, 316);
+            this.ClientSize = new System.Drawing.Size(762, 351);
+            this.Controls.Add(this.ConnectProductButton);
             this.Controls.Add(this.ViewBox);
             this.Controls.Add(this.RemoveCategoryButton);
             this.Controls.Add(this.CategoryList);
@@ -138,5 +150,6 @@
         private System.Windows.Forms.CheckedListBox CategoryList;
         private System.Windows.Forms.Button RemoveCategoryButton;
         private System.Windows.Forms.ComboBox ViewBox;
+        private System.Windows.Forms.Button ConnectProductButton;
     }
 }

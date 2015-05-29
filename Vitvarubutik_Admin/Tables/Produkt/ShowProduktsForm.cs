@@ -263,5 +263,13 @@ namespace Vitvarubutik_Admin.Tables.Produkt
             UpdateProducts();
             RemoveCategoryButton.Enabled = true;
         }
+
+        private void ConnectProductButton_Click(object sender, EventArgs e)
+        {
+            if(listProducts.SelectedIndex < 0)
+                return;
+
+            new ConnectProductForm(indexes[listProducts.SelectedIndex]);
+        }
     }
 }

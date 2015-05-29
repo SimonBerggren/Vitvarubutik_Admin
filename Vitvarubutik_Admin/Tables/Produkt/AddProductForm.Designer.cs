@@ -99,9 +99,9 @@
             // AddButton
             // 
             this.AddButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddButton.Location = new System.Drawing.Point(635, 98);
+            this.AddButton.Location = new System.Drawing.Point(634, 90);
             this.AddButton.Name = "AddButton";
-            this.AddButton.Size = new System.Drawing.Size(100, 42);
+            this.AddButton.Size = new System.Drawing.Size(100, 50);
             this.AddButton.TabIndex = 11;
             this.AddButton.Text = "Lägg till";
             this.AddButton.UseVisualStyleBackColor = true;
@@ -152,7 +152,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(747, 178);
+            this.ClientSize = new System.Drawing.Size(747, 151);
             this.Controls.Add(this.Kategori);
             this.Controls.Add(this.InköpsTextBox);
             this.Controls.Add(this.LeverantörTextBox);
